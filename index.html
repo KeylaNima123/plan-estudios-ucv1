@@ -184,6 +184,32 @@
 
     window.guardarEstado = guardarEstado;
 
+const selects = document.querySelectorAll("select");
+
+selects.forEach(select => {
+  const row = select.closest("tr");
+
+  function updateColor() {
+    if (select.value === "Culminado") {
+      row.style.backgroundColor = "#fff8cc"; // amarillo claro
+    } else {
+      row.style.backgroundColor = "#f0d6ff"; // lila claro
+    }
+  }
+
+  // Inicializar color
+  updateColor();
+
+  // Evento cuando cambia el valor
+  select.addEventListener("change", () => {
+    guardarEstado(select.closest("tr").children[0].innerText, select.value);
+    updateColor();
+  });
+});
+
+
+   
+
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
     }
